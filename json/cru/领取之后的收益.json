@@ -1,0 +1,104 @@
+### 收益（领取之后）/惩罚查询
+POST https://crust.webapi.subscan.io/api/scan/account/reward_slash
+Accept: application/json
+Content-Type: application/json
+### 请求参数
+{"row":10,"page":0,"address":"cTKyarcbAcmWnzVX9KJmX2yGoModhoBx7qymkv3YD8TGGgFXS"}
+
+
+### 请求返回
+{
+    "code": 0,
+    "message": "Success",
+    "generated_at": 1631160862, //时间戳
+    "data": {
+        "count": 6,
+        "list": [
+            {
+                "account": "cTKyarcbAcmWnzVX9KJmX2yGoModhoBx7qymkv3YD8TGGgFXS", //钱包地址
+                "amount": "147553733008", //账户余额 12位(147553733008=0.147553733008CRU)
+                "block_num": 882934, //区块号
+                "block_timestamp": 1631155146, //出块时间
+                "event_id": "Reward", //类型：Reward收益
+                "event_idx": 27,
+                "event_index": "882934-27",
+                "extrinsic_hash": "0x2901a5a6f9b2574ef4f63d804b6e627f56d16238571ea6e4d0b716df752b81c4",
+                "extrinsic_idx": 10,
+                "extrinsic_index": "882934-10",
+                "module_id": "staking",
+                "params": [ //先不关注
+                    {
+                        "type": "AccountId", // 类型：AccountId，Balance
+                        "value": "a0e2b6917220a21a5e2a28ffad53c48ebb746a29a76ce085a35ee9ffec6f0545"
+                    },
+                    {
+                        "type": "Balance",
+                        "value": "147553733008"
+                    }
+                ],
+                "params_yl": "[{\"type\":\"AccountId\",\"value\":\"a0e2b6917220a21a5e2a28ffad53c48ebb746a29a76ce085a35ee9ffec6f0545\"},{\"type\":\"Balance\",\"value\":\"147553733008\"}]",
+                "stash": "cTKyarcbAcmWnzVX9KJmX2yGoModhoBx7qymkv3YD8TGGgFXS"
+            },
+            {
+                "account": "cTKyarcbAcmWnzVX9KJmX2yGoModhoBx7qymkv3YD8TGGgFXS",
+                "amount": "146450379120",
+                "block_num": 882934,
+                "block_timestamp": 1631155146,
+                "event_id": "Reward",
+                "event_idx": 28,
+                "event_index": "882934-28",
+                "extrinsic_hash": "0x2901a5a6f9b2574ef4f63d804b6e627f56d16238571ea6e4d0b716df752b81c4",
+                "extrinsic_idx": 10,
+                "extrinsic_index": "882934-10",
+                "module_id": "staking",
+                "params": "[{\"type\":\"AccountId\",\"value\":\"a0e2b6917220a21a5e2a28ffad53c48ebb746a29a76ce085a35ee9ffec6f0545\"},{\"type\":\"Balance\",\"value\":\"146450379120\"}]",
+                "stash": "cTKyarcbAcmWnzVX9KJmX2yGoModhoBx7qymkv3YD8TGGgFXS"
+            },
+            {
+                "account": "cTKyarcbAcmWnzVX9KJmX2yGoModhoBx7qymkv3YD8TGGgFXS",
+                "amount": "147364821177",
+                "block_num": 872934,
+                "block_timestamp": 1631094894,
+                "event_id": "Reward",
+                "event_idx": 1,
+                "event_index": "872934-1",
+                "extrinsic_hash": "0x4a25376ccd7c626ccd8a198556d61fd274818f1f7a326f03995a3faf967deb69",
+                "extrinsic_idx": 1,
+                "extrinsic_index": "872934-1",
+                "module_id": "staking",
+                "params": "[{\"type\":\"AccountId\",\"value\":\"a0e2b6917220a21a5e2a28ffad53c48ebb746a29a76ce085a35ee9ffec6f0545\"},{\"type\":\"Balance\",\"value\":\"147364821177\"}]",
+                "stash": "cTKyarcbAcmWnzVX9KJmX2yGoModhoBx7qymkv3YD8TGGgFXS"
+            },
+            {
+                "account": "cTKyarcbAcmWnzVX9KJmX2yGoModhoBx7qymkv3YD8TGGgFXS",
+                "amount": "151405886782",
+                "block_num": 871897,
+                "block_timestamp": 1631088624,
+                "event_id": "Reward",
+                "event_idx": 60,
+                "event_index": "871897-60",
+                "extrinsic_hash": "0xa1ff1b1df073f5f95c78c9bf5f5ce0a947c2f253e24f08747d79e09050c40587",
+                "extrinsic_idx": 21,
+                "extrinsic_index": "871897-21",
+                "module_id": "staking",
+                "params": "[{\"type\":\"AccountId\",\"value\":\"a0e2b6917220a21a5e2a28ffad53c48ebb746a29a76ce085a35ee9ffec6f0545\"},{\"type\":\"Balance\",\"value\":\"151405886782\"}]",
+                "stash": "cTKyarcbAcmWnzVX9KJmX2yGoModhoBx7qymkv3YD8TGGgFXS"
+            },
+            {
+                "account": "cTKyarcbAcmWnzVX9KJmX2yGoModhoBx7qymkv3YD8TGGgFXS",
+                "amount": "149163586981",
+                "block_num": 871897,
+                "block_timestamp": 1631088624,
+                "event_id": "Reward",
+                "event_idx": 61,
+                "event_index": "871897-61",
+                "extrinsic_hash": "0xa1ff1b1df073f5f95c78c9bf5f5ce0a947c2f253e24f08747d79e09050c40587",
+                "extrinsic_idx": 21,
+                "extrinsic_index": "871897-21",
+                "module_id": "staking",
+                "params": "[{\"type\":\"AccountId\",\"value\":\"a0e2b6917220a21a5e2a28ffad53c48ebb746a29a76ce085a35ee9ffec6f0545\"},{\"type\":\"Balance\",\"value\":\"149163586981\"}]",
+                "stash": "cTKyarcbAcmWnzVX9KJmX2yGoModhoBx7qymkv3YD8TGGgFXS"
+            }
+        ]
+    }
+}

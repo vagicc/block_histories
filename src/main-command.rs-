@@ -1,0 +1,19 @@
+fn main() {
+    use std::process::Command;
+    println!("拉取mass爆块信息!");
+    let output = Command::new("echo")
+        .arg("你好，临来笑笑生")
+        .output()
+        .expect("执行命令失败");
+    let status = output.status;
+
+    if status.success() {
+        println!("命令执行成功");
+    }
+
+    println!("status: {}", output.status);
+    println!("stdout: {}", String::from_utf8_lossy(&output.stdout));
+    println!("stderr: {}", String::from_utf8_lossy(&output.stderr));
+
+    // println!("命令结果：{:#?}", output);
+}

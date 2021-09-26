@@ -1,0 +1,139 @@
+{
+    "code": 0,
+    "message": "Success",
+    "generated_at": 1631254691, //时间戳
+    "data": {
+        "block_timestamp": 1631229330, //出块时间戳
+        "block_num": 895211, //区块数
+        "extrinsic_index": "895211-18", //交易，跟传的值一样
+        "call_module_function": "batch",
+        "call_module": "utility",
+        "account_id": "cTKSEvy1mrWs2dfdv2wTyxaU4NZBirydPj4X6JU2Eu22Gkv9j", //我们钱包地址
+        "signature": "0xb22273591d79c7c3174da631856fd32d4bdd6814a3e3b167d5ad28b5be5a6621940637ad4f2b37bc486c927c1e1219ce47c2227591fd7f4417e6d18b1949d988", //签名
+        "nonce": 11,
+        "extrinsic_hash": "0x763664627461d7a6cdbd451c7cf1aef634fb838bc0472e3e0ac03fe33d0f8338", //交易hash,具有唯一性
+        "success": true,
+        "params": [
+            {
+                "name": "calls",
+                "type": "Vec\u003c\u003cT as Config\u003e::Call\u003e",
+                "value": [
+                    {
+                        "call_index": "080a",
+                        "call_module": "Staking",
+                        "call_name": "reward_stakers",
+                        "params": [
+                            {
+                                "name": "validator_stash",
+                                "type": "AccountId",
+                                "value": "a0e2b6917220a21a5e2a28ffad53c48ebb746a29a76ce085a35ee9ffec6f0545"
+                            },
+                            {
+                                "name": "era",
+                                "type": "EraIndex",
+                                "value": 249
+                            }
+                        ]
+                    },
+                    {
+                        "call_index": "080a",
+                        "call_module": "Staking",
+                        "call_name": "reward_stakers",
+                        "params": [
+                            {
+                                "name": "validator_stash",
+                                "type": "AccountId",
+                                "value": "a0e2b6917220a21a5e2a28ffad53c48ebb746a29a76ce085a35ee9ffec6f0545"
+                            },
+                            {
+                                "name": "era",
+                                "type": "EraIndex",
+                                "value": 250
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "transfer": null,
+        "event": [ //只处理"module_id": "staking", 与"event_id": "Reward"，
+            {
+                "event_index": "895211-18",   //交易号
+                "block_num": 895211,
+                "extrinsic_idx": 18,
+                "module_id": "staking",
+                "event_id": "Reward",
+                "params": [   //收益
+                    {
+                        "type": "AccountId",
+                        "value": "a0e2b6917220a21a5e2a28ffad53c48ebb746a29a76ce085a35ee9ffec6f0545"
+                    },
+                    {
+                        "type": "Balance",    //这个下面才是收益
+                        "value": "257557844252"  //收益：12次方   0.257557844252 CRU
+                    }
+                ],
+                "params_yl": "[{\"type\":\"AccountId\",\"value\":\"a0e2b6917220a21a5e2a28ffad53c48ebb746a29a76ce085a35ee9ffec6f0545\"},{\"type\":\"Balance\",\"value\":\"257557844252\"}]",
+                "event_idx": 50,
+                "extrinsic_hash": "0x763664627461d7a6cdbd451c7cf1aef634fb838bc0472e3e0ac03fe33d0f8338",
+                "finalized": true,
+                "block_timestamp": 0
+            },
+            {
+                "event_index": "895211-18",
+                "block_num": 895211,
+                "extrinsic_idx": 18,
+                "module_id": "staking",
+                "event_id": "Reward",
+                "params": "[{\"type\":\"AccountId\",\"value\":\"a0e2b6917220a21a5e2a28ffad53c48ebb746a29a76ce085a35ee9ffec6f0545\"},{\"type\":\"Balance\",\"value\":\"273426428157\"}]",
+                "event_idx": 51,
+                "extrinsic_hash": "0x763664627461d7a6cdbd451c7cf1aef634fb838bc0472e3e0ac03fe33d0f8338",
+                "finalized": true,
+                "block_timestamp": 0
+            },
+            {
+                "event_index": "895211-18",
+                "block_num": 895211,
+                "extrinsic_idx": 18,
+                "module_id": "utility",
+                "event_id": "BatchCompleted",
+                "params": "",
+                "event_idx": 52,
+                "extrinsic_hash": "0x763664627461d7a6cdbd451c7cf1aef634fb838bc0472e3e0ac03fe33d0f8338",
+                "finalized": true,
+                "block_timestamp": 0
+            },
+            {
+                "event_index": "895211-18",
+                "block_num": 895211,
+                "extrinsic_idx": 18,
+                "module_id": "treasury",
+                "event_id": "Deposit",
+                "params": "[{\"type\":\"Balance\",\"value\":\"26889712\"}]",
+                "event_idx": 53,
+                "extrinsic_hash": "0x763664627461d7a6cdbd451c7cf1aef634fb838bc0472e3e0ac03fe33d0f8338",
+                "finalized": true,
+                "block_timestamp": 0
+            }
+        ],
+        "fee": "33612134",
+        "error": null,
+        "finalized": true,
+        "lifetime": {
+            "birth": 895208,
+            "death": 895272
+        },
+        "tip": "0",
+        "account_display": {
+            "address": "cTKSEvy1mrWs2dfdv2wTyxaU4NZBirydPj4X6JU2Eu22Gkv9j",
+            "display": "",
+            "judgements": null,
+            "account_index": "",
+            "identity": false,
+            "parent": null
+        },
+        "crosschain_op": null,
+        "block_hash": "0xdc4f8f54ebc34f384495b895fb9712d10baac46ffe938bd4770324db36e8d056",
+        "pending": false
+    }
+}

@@ -1,0 +1,86 @@
+
+### 账户基本情况
+POST https: //crust.webapi.subscan.io/api/v2/scan/search
+Accept: application/json
+Content-Type: application/json
+### 请求参数
+{
+    "key": "cTKyarcbAcmWnzVX9KJmX2yGoModhoBx7qymkv3YD8TGGgFXS",
+    "row": 1,
+    "page": 0
+}
+
+### 请求返回
+{
+    "code": 0,
+    "message": "Success",
+    "generated_at": 1631160372, //时间戳
+    "data": {
+        "account": {
+            "account_display": {
+                "account_index": "",
+                "address": "cTLbrTcsSj94TLzMMnmHBGuUrh4NzaRdcZY7XKw9XnHdq23Mw",
+                "display": "",
+                "identity": false,
+                "judgements": null,
+                "parent": null
+            },
+            "address": "cTLbrTcsSj94TLzMMnmHBGuUrh4NzaRdcZY7XKw9XnHdq23Mw",
+            "balance": "0.574639850941", //余额    单位CRU   ,低于0.1就要报警钉钉消息
+            "balance_lock": "0", //锁定的金额 单位CRU
+            "bonded": "0", // 质押的金额 单位CRU 
+            "democracy_lock": "0",
+            "derive_token": {},
+            "election_lock": "0",
+            "is_council_member": false,
+            "is_evm_contract": false,
+            "is_registrar": false,
+            "is_techcomm_member": false,
+            "lock": "0",
+            "nonce": 96,
+            "registrar_info": null,
+            "reserved": "0",
+            "role": "",
+            "staking_info": null,
+            "stash": "",
+            "unbonding": "0"
+        }
+    }
+}
+
+{
+    "code": 0,
+    "message": "Success",
+    "generated_at": 1631160631,
+    "data": {
+        "account": {
+            "account_display": {
+                "account_index": "",
+                "address": "cTKyarcbAcmWnzVX9KJmX2yGoModhoBx7qymkv3YD8TGGgFXS",
+                "display": "",
+                "identity": false,
+                "judgements": null,
+                "parent": null
+            },
+            "address": "cTKyarcbAcmWnzVX9KJmX2yGoModhoBx7qymkv3YD8TGGgFXS",
+            "balance": "201.304716537401", //余额    单位CRU   ,低于0.1就要报警钉钉消息
+            "balance_lock": "189.872774820832", //锁定的金额 单位CRU
+            "bonded": "189872774820832", // 质押的金额 单位CRU --显示
+            "democracy_lock": "0",
+            "derive_token": {},
+            "election_lock": "0",
+            "is_council_member": false,
+            "is_evm_contract": false,
+            "is_registrar": false,
+            "is_techcomm_member": false,
+            "lock": "189.872774820832", // 锁定单位CRU   暂不显示
+            "nonce": 11,
+            "registrar_info": null,
+            "reserved": "0",
+            "role": "",
+            "staking_info": null,
+            "stash": "",
+            "unbonding": "0"
+        }
+    }
+}

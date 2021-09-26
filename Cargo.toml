@@ -1,0 +1,52 @@
+[package]
+name = "block_histories"
+version = "0.1.0"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+# ssh登录到远程主机执行命令
+ssh2 = "0.9.1"
+
+# json
+serde_derive = "1.0.126"  
+serde_json = "1.0.64"
+serde = {version = "1.0.126", features = ["derive"] }
+
+
+# diesel是Rust的ORM(对象关系映射器)和查询构建器
+# diesel为PostgreSQL、Mysql及SQLite提供了开箱即用的支持
+diesel = { version="1.4.7",features=["extras","mysql","r2d2","with-deprecated","numeric","chrono"] }
+
+#  diesel中的numeric类型用到 Nullable<Decimal>
+bigdecimal = "0.1.0"
+
+# 加载环境配置文件.env
+dotenv = "0.15.0"
+
+# 时间处理
+chrono = "0.4.19"
+
+#发送http请求
+hyper = { version="0.14.11", features=["full"] }
+tokio = { version="1.9.0", features=["full"]}
+reqwest = { version="0.11.4",features=["json"]}
+
+glob = "0.3.0"  # 支持与Unixshell样式模式匹配文件路径。
+
+#递归的' async fn '必须被重写以返回一个装箱的' dyn Future '
+async-recursion = "0.3.2"
+
+#解析html
+nipper = "0.1.9"
+
+#====================
+parity-secp256k1 = "0.7.0"
+lazy_static = "1.4.0"
+ethereum-types = "0.12.0"
+rust-crypto = "0.2.36"
+rustc-serialize = "0.3.24"
+zeroize = "1.4.1"
+parity-crypto = { version = "0.9.0", features = ["publickey"] }
