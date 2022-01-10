@@ -17,7 +17,7 @@ pub fn test_file() {
                 Ok(fc) => fc,
                 Err(e) => panic!("创建文件{}失败", e),
             },
-            other_error => panic!("打开文件出错:{:?}",),
+            other_error => panic!("打开文件出错:{:?}",error),
         },
     };
 
