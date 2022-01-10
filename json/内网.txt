@@ -1,0 +1,30 @@
+155.94.164.199  llxxs,Vps17
+
+mass钱包机从55阿里登陆：10.8.0.165:22
+ssh -o ServerAliveInterval=60 -f -N -R 9093:127.0.0.1:22 root@155.94.164.199
+ssh -o ServerAliveInterval=60 -f -N -R 9093:127.0.0.1:22 root@159.75.44.6   
+有217KEY
+0 0.0.0.0:22
+
+curl http://127.0.0.1:9095
+
+10.8.0.217   成功
+ssh -o ServerAliveInterval=60 -f -N -R 9097:127.0.0.1:22 root@155.94.164.199   
+ssh -o ServerAliveInterval=60 -f -N -R 9097:127.0.0.1:22 root@159.75.44.6   
+有159.75.44.6key
+
+ #Port 5022
+#AddressFamily any
+listenAddress 0.0.0.0:5022
+listenAddress 0.0.0.0:22
+service sshd restart
+
+ssh -o ServerAliveInterval=60 -f -N -R 9093:127.0.0.1:5022 root@155.94.164.199
+
+id_rsa.pub
+ssh-keygen -i -f id_rsa.pub >> ~/.ssh/authorized_keys
+
+
+bzz.mingyou168.cn
+
+cru 14.29.126.40  ssh  10.10.2.2-33   QWer@1234.

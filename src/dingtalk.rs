@@ -14,6 +14,42 @@ struct DingtalkContent {
     content: String,
 }
 
+pub async fn send_hosting(message: String) -> i32 {
+    // println!("POST请求发送钉钉消息!");
+
+    let url="https://oapi.dingtalk.com/robot/send?access_token=9c7d42da895c54e6b5f5701a6689684fb4160102e2fc493e895dc081b80f0fd9";
+    let client = reqwest::Client::new();
+
+    let mut headers = HeaderMap::new();
+    headers.insert("ontent-Type", "application/json".parse().unwrap());
+
+    // let mut data = HashMap::new();
+    // data.insert("msgtype", "text");
+    // let mut dingtalk = Dingtalk::new("kdasdf");
+    // data.insert("text", dingtalk);
+    let message = format!("MASS：\n{}", message);
+
+    let content = DingtalkContent { content: message };
+    let data = Dingtalk {
+        msgtype: "text".to_string(),
+        text: content,
+    };
+
+    let response = client
+        .post(url)
+        .headers(headers)
+        .json(&data)
+        .send()
+        .await
+        .unwrap();
+
+    let temp_json = response.json::<HashMap<String, Value>>().await.unwrap();
+    println!("{:#?}", temp_json);
+    println!("======================9=====================");
+    let kasdf = 89;
+    kasdf
+}
+
 pub async fn send(message: String) -> i32 {
     println!("POST请求发送钉钉消息!");
 
@@ -50,7 +86,6 @@ pub async fn send(message: String) -> i32 {
     let kasdf = 89;
     kasdf
 }
-
 
 pub async fn send_xfx(message: String) -> i32 {
     println!("POST请求发送钉钉消息!");
@@ -89,7 +124,6 @@ pub async fn send_xfx(message: String) -> i32 {
     kasdf
 }
 
-
 pub async fn send_xch(message: String) -> i32 {
     println!("POST请求发送钉钉消息!");
 
@@ -126,7 +160,6 @@ pub async fn send_xch(message: String) -> i32 {
     let kasdf = 89;
     kasdf
 }
-
 
 pub async fn send_cru(message: String) -> i32 {
     println!("POST请求发送钉钉消息!");

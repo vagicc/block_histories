@@ -2,7 +2,6 @@ use crate::db::MysqlPooledConnection;
 use crate::schema::coin_pool_groover;
 use crate::schema::coin_pool_groover::dsl::*;
 use diesel::prelude::*;
-
 use bigdecimal::BigDecimal;
 use chrono::NaiveDateTime;
 use diesel::QueryDsl;
@@ -77,7 +76,7 @@ pub fn get_pool_type_groover(
 ) -> Vec<CoinPoolGrooverData> {
     let query = coin_pool_groover.filter(pool_type.eq(pooltype));
     let sql = diesel::debug_query::<diesel::mysql::Mysql, _>(&query).to_string();
-    println!("取得一类矿工的SQL:{:?}", sql);
+    // println!("取得一类矿工的SQL:{:?}", sql);
 
     let data = query
         .get_results::<CoinPoolGrooverData>(connection)

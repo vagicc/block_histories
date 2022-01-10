@@ -350,6 +350,9 @@ table! {
         pha -> Nullable<Decimal>,
         pha_freeze -> Nullable<Decimal>,
         pha_available -> Nullable<Decimal>,
+        other -> Nullable<Text>,
+        other_freeze -> Nullable<Text>,
+        other_available -> Nullable<Text>,
     }
 }
 
@@ -362,6 +365,18 @@ table! {
         chia -> Nullable<Decimal>,
         chia_freeze -> Nullable<Decimal>,
         chia_available -> Nullable<Decimal>,
+    }
+}
+
+table! {
+    coin_wallet_cru (id) {
+        id -> Bigint,
+        customer_id -> Bigint,
+        modify -> Datetime,
+        balance_version -> Bigint,
+        cru -> Nullable<Decimal>,
+        cru_freeze -> Nullable<Decimal>,
+        cru_available -> Nullable<Decimal>,
     }
 }
 
@@ -415,6 +430,86 @@ table! {
         status -> Tinyint,
         modify -> Datetime,
         create_time -> Datetime,
+    }
+}
+
+table! {
+    cru_hashrate_record (id) {
+        id -> Bigint,
+        daily -> Date,
+        hours -> Tinyint,
+        pool_id -> Bigint,
+        pool_name -> Nullable<Varchar>,
+        pool_type -> Nullable<Varchar>,
+        groover_id -> Bigint,
+        pool_order -> Nullable<Integer>,
+        groover -> Nullable<Varchar>,
+        wallet_id -> Nullable<Varchar>,
+        wallet_address -> Nullable<Varchar>,
+        status -> Tinyint,
+        pool_power -> Nullable<Varchar>,
+        pool_limit_stake -> Nullable<Varchar>,
+        pool_total_stake -> Nullable<Varchar>,
+        pool_members -> Nullable<Integer>,
+        pool_cap -> Nullable<Varchar>,
+        server_id -> Unsigned<Integer>,
+        customer_id -> Bigint,
+        account_id -> Nullable<Varchar>,
+        cap -> Nullable<Varchar>,
+        used -> Nullable<Varchar>,
+        spare -> Nullable<Varchar>,
+        report_slot -> Bigint,
+        reported_files_size -> Nullable<Varchar>,
+        generated_at -> Nullable<Bigint>,
+        update_time -> Datetime,
+    }
+}
+
+table! {
+    cru_server_system (id) {
+        id -> Bigint,
+        server_id -> Unsigned<Integer>,
+        customer_id -> Bigint,
+        ip1 -> Nullable<Varchar>,
+        ip2 -> Nullable<Varchar>,
+        group_owner -> Nullable<Varchar>,
+        account_id -> Nullable<Varchar>,
+        cap -> Nullable<Varchar>,
+        used -> Nullable<Varchar>,
+        spare -> Nullable<Varchar>,
+        report_slot -> Bigint,
+        reported_files_size -> Nullable<Varchar>,
+        generated_at -> Nullable<Bigint>,
+        chain_status -> Nullable<Varchar>,
+        api_status -> Nullable<Varchar>,
+        sworker_status -> Nullable<Varchar>,
+        smanager_status -> Nullable<Varchar>,
+        ipfs_status -> Nullable<Varchar>,
+        create_time -> Datetime,
+    }
+}
+
+table! {
+    cru_server_system_new (id) {
+        id -> Bigint,
+        server_id -> Unsigned<Integer>,
+        customer_id -> Bigint,
+        ip1 -> Nullable<Varchar>,
+        ip2 -> Nullable<Varchar>,
+        group_owner -> Nullable<Varchar>,
+        account_id -> Nullable<Varchar>,
+        cap -> Nullable<Varchar>,
+        used -> Nullable<Varchar>,
+        spare -> Nullable<Varchar>,
+        report_slot -> Bigint,
+        reported_files_size -> Nullable<Varchar>,
+        generated_at -> Nullable<Bigint>,
+        chain_status -> Nullable<Varchar>,
+        api_status -> Nullable<Varchar>,
+        sworker_status -> Nullable<Varchar>,
+        smanager_status -> Nullable<Varchar>,
+        ipfs_status -> Nullable<Varchar>,
+        update_time -> Datetime,
     }
 }
 
@@ -802,7 +897,8 @@ table! {
         server_name -> Varchar,
         computer_room -> Nullable<Varchar>,
         cpuinfo -> Nullable<Varchar>,
-        cpu_nums -> Nullable<Bool>,
+        // cpu_nums -> Nullable<Bool>,
+        cpu_nums -> Nullable<TinyInt>,
         hard_disk -> Nullable<Varchar>,
         memory -> Nullable<Varchar>,
         radiator -> Nullable<Varchar>,
@@ -815,6 +911,7 @@ table! {
         admin_id -> Nullable<Bigint>,
         customer_id -> Unsigned<Integer>,
         create_time -> Nullable<Datetime>,
+        account_id -> Nullable<Varchar>,
     }
 }
 
@@ -828,6 +925,16 @@ table! {
         ip -> Nullable<Varchar>,
         timestamp -> Nullable<Bigint>,
         update_time -> Datetime,
+    }
+}
+
+table! {
+    trade_password (id) {
+        id -> Integer,
+        customer_id -> Unsigned<Integer>,
+        password -> Varchar,
+        salt -> Nullable<Char>,
+        create_time -> Datetime,
     }
 }
 
@@ -918,8 +1025,12 @@ allow_tables_to_appear_in_same_query!(
     coin_type,
     coin_wallet,
     coin_wallet_chia,
+    coin_wallet_cru,
     coin_wallet_water,
     cru_block_histories,
+    cru_hashrate_record,
+    cru_server_system,
+    cru_server_system_new,
     customer,
     find_block_histories,
     mass_block_abnormal,
@@ -947,6 +1058,7 @@ allow_tables_to_appear_in_same_query!(
     roles,
     server_hosting,
     sms_verification,
+    trade_password,
     xfx_block_histories,
     xfx_server_system,
     xfx_server_system_new,

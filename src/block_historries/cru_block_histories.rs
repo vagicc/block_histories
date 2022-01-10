@@ -18,8 +18,9 @@ pub async fn logic(connection: &MysqlPooledConnection) -> bool {
     println!("处理cru币收益主逻辑");
 
     /* 先从任务调度里取得开始区块，并且插入可并行的任务,再去查找区块:从区块：955500 开始扫*/
+    // let find_block = get_start_block("cru", connection);
     let find_block = get_start_block("cru", connection).expect("注意无任务调度，看下表^^^^");
- 
+
     let mut block_num = find_block.block_num.unwrap();
     let cycles_num = 1900; //此次查找区块量
     let new_block_num = block_num + cycles_num; //此次扫块的终点
@@ -69,7 +70,7 @@ pub async fn logic(connection: &MysqlPooledConnection) -> bool {
 
         /* 用交易号去取得交易详情，然后写到收益表，并提示钉钉消息有收益了 */
         for (extrinsic_index, groover) in extrinsic_index_data {
-            let cru_data = get_cru_extrinsic_index(&extrinsic_index).await;
+            let cru_data = get_cru_extrinsic_index(&extrinsic_index, &groover).await;
             /* 取到了数据，可以去表查找是否有记录过，如没记录过再记录并且发钉钉消息提示 */
             cru_block_histories(&cru_data, &groover, connection).await;
         }
@@ -111,7 +112,7 @@ pub async fn _logic_old(connection: &MysqlPooledConnection) -> bool {
 
         /* 用交易号去取得交易详情，然后写到收益表，并提示钉钉消息有收益了 */
         for (extrinsic_index, groover) in extrinsic_index_data {
-            let cru_data = get_cru_extrinsic_index(&extrinsic_index).await;
+            let cru_data = get_cru_extrinsic_index(&extrinsic_index, &groover).await;
             /* 取到了数据，可以去表查找是否有记录过，如没记录过再记录并且发钉钉消息提示 */
             cru_block_histories(&cru_data, &groover, connection).await;
         }
@@ -138,6 +139,7 @@ pub async fn cru_block_histories(
 ) {
     println!("查找是否有记录过，如没记录过再记录并且发钉钉消息提示");
     let mut send_array: HashMap<String, SendSms> = HashMap::new();
+    let mut pool_data: HashMap<i64, i8> = HashMap::new();
 
     for index_data in cru_index_data {
         // `event_idx` INT DEFAULT NULL COMMENT '相同的extrinsic_index(block_num连extrinsic_idx)，不同的这个区分不同获利',
@@ -201,8 +203,35 @@ pub async fn cru_block_histories(
                 block_time.format("%Y-%m-%d %H:%M:%S").to_string()
             );
             send_cru(temp.to_string()).await;
+
+            // 判断是否要执行自动分币
+            if pool_data.is_empty() {
+                pool_data = get_cru_pool_data(connection);
+            }
+
+            match pool_data.get(&groover.pool_id) {
+                Some(pool_allot) => {
+                    if pool_allot.eq(&1) {
+                        println!("执行自动分币");
+                        use crate::devide_coin::cru_devide::php_devide_cru;
+                        php_devide_cru(&new_data, connection);
+                    }
+                }
+                None => {}
+            }
         }
     }
+}
+
+pub fn get_cru_pool_data(connection: &MysqlPooledConnection) -> HashMap<i64, i8> {
+    use crate::models::coin_pool_model::get_type_pool;
+    let pool_data = get_type_pool("cru", connection);
+
+    let mut pool_temp: HashMap<i64, i8> = HashMap::new();
+    for (id, _, _, allot) in pool_data {
+        pool_temp.insert(id, allot);
+    }
+    pool_temp
 }
 
 pub async fn get_cru_block_num() -> i64 {
@@ -238,7 +267,10 @@ pub async fn get_cru_block_num() -> i64 {
     new_block_num
 }
 
-pub async fn get_cru_extrinsic_index(extrinsic_index: &String) -> Vec<CRUIndexData> {
+pub async fn get_cru_extrinsic_index(
+    extrinsic_index: &String,
+    groover: &CoinPoolGrooverData,
+) -> Vec<CRUIndexData> {
     let url = "https://crust.webapi.subscan.io/api/scan/extrinsic";
     let client = reqwest::Client::new();
     let mut headers = reqwest::header::HeaderMap::new();
@@ -303,7 +335,25 @@ pub async fn get_cru_extrinsic_index(extrinsic_index: &String) -> Vec<CRUIndexDa
         }
         let params: Vec<ParamData> = serde_json::from_str(&params_json).unwrap();
         // println!("params:{:#?}", params);
-        let amount = get_amount(params);
+
+        let (check_accountid, amount) = get_accountid_and_amount(params);
+        let mut wallet_id = String::new();
+        let temp = groover.wallet_id.as_ref();
+        match temp {
+            Some(waid) => wallet_id = waid.clone(),
+            None => {}
+        }
+        if !wallet_id.is_empty() && !check_accountid.eq(&wallet_id) {
+            println!(
+                "查看跳过的区块==================================================????????====="
+            );
+            println!("wallet_id: {}", &wallet_id);
+            println!("accountid: {}", &check_accountid);
+            continue; //这里改了程序流程,加了判断是为当前账号的才处理
+        }
+
+        // let amount = get_amount(params);   //这里改了程序流程
+
         let finalized = if event.finalized { "true" } else { "false" };
 
         let index_data = CRUIndexData {
@@ -342,6 +392,20 @@ pub struct CRUIndexData {
     pub account_id: String,
     pub amount: i64,
     pub finalized: String,
+}
+
+pub fn get_accountid_and_amount(params: Vec<ParamData>) -> (String, i64) {
+    let mut amount: i64 = 0;
+    let mut accountid = String::new();
+    for data in params {
+        if data.r#type.eq("Balance") {
+            amount = data.value.parse::<i64>().expect("字符串转i64类型出错");
+        }
+        if data.r#type.eq("AccountId") {
+            accountid = data.value;
+        }
+    }
+    (accountid, amount)
 }
 
 pub fn get_amount(params: Vec<ParamData>) -> i64 {

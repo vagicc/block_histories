@@ -9,6 +9,8 @@ use crate::models::coin_pool_groover_model::get_pool_groover;
 use crate::models::coin_pool_model::{get_pool, get_type_pool};
 // use crate::models::coin_pool_model::get_pool_wallet;
 use crate::dingtalk::{send, send_xch, send_xfx};
+use crate::record::cru_record;
+use crate::server_hosting_monitor::cru_hosting::*;
 use chrono::prelude::Local;
 use chrono::TimeZone;
 use glob::glob;
@@ -29,7 +31,9 @@ mod devide_coin;
 mod dingtalk;
 mod json_value;
 mod models;
+mod record;
 mod schema;
+mod server_hosting_monitor;
 
 #[macro_use]
 extern crate diesel;
@@ -132,9 +136,20 @@ async fn main() {
         //     println!("发送消息结果：{:?}", temp);
         // }
     } else if coin_type.eq("cru") {
-        let _susses = logic(&connection).await;
+        let two_arg = std::env::args().nth(2).unwrap_or("logic".to_string());
+        if two_arg.eq("logic") {
+            println!("CRU币扫块");
+            let _susses = logic(&connection).await;
+        } else if two_arg.eq("record") {
+            // println!("每隔6小时记录所有CRU矿池和矿机算力");
+            cru_record::cru_record(&connection).await;
+        } else {
+            println!("这里处理CRU矿机监控");
+            // cru_server(&connection);
+            cru_server_new(&connection).await;
+        }
     } else if coin_type.eq("test") {
-        test_file();
+        test_u64();
         // test_file_lock();
     }
 

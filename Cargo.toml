@@ -1,5 +1,5 @@
 [package]
-name = "block_histories"
+name = "mass_block_histories"
 version = "0.1.0"
 edition = "2018"
 

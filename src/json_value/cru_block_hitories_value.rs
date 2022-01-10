@@ -71,6 +71,6 @@ pub struct EventData {
 
 #[derive(Debug, Clone, Deserialize)]
 pub struct ParamData {
-    pub r#type: String,
+    pub r#type: String,   //注意关键字作为json的键时
     pub value: String,
 }

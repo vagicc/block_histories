@@ -35,8 +35,36 @@ pub fn test_file() {
     file.write_all(temp).expect("ll");
 }
 
-
-
 pub fn test_file_lock() {
     println!("测试文件锁");
+}
+
+pub fn test_u64() {
+    //算力比以前小了，得警告到钉钉,上次算力393665900982731，此次算力393665901719181
+    // 算力比以前小了，得警告到钉钉,上次算力490847812144240，此次算力490847813020016
+    //防止计算溢出（attempt to subtract with overflow），加checked_add;saturating_add、减checked_sub、乖checked_mul、除checked_div、checked_rem为%求余
+    let oldcap: u64 = 393665900982731;
+    let cap: u64 = 393665901719181;
+    let tem = oldcap.checked_sub(cap);
+    match tem {
+        Some(sub) => {
+            println!("{}-{}={}", oldcap, cap, sub);
+            let t = sub.checked_div(10);
+        }
+        None => {
+            println!("无法相减");
+            let a = 31u64;
+            let b = 10u64;
+            let d = a.checked_div(b);
+            match d {
+                Some(k) => println!("{}/{}={}", a, b, k),
+                None => println!("{}除以{},不开？？？", a, b),
+            }
+        }
+    }
+    if oldcap > cap {
+        println!("大于");
+    } else {
+        println!("不大于");
+    }
 }

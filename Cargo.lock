@@ -147,33 +147,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8d696c370c750c948ada61c69a0ee2cbbb9c50b1019ddb86d9317157a99c2cae"
 
 [[package]]
-name = "block_histories"
-version = "0.1.0"
-dependencies = [
- "async-recursion",
- "bigdecimal",
- "chrono",
- "diesel",
- "dotenv",
- "ethereum-types",
- "glob",
- "hyper",
- "lazy_static",
- "nipper",
- "parity-crypto",
- "parity-secp256k1",
- "reqwest",
- "rust-crypto",
- "rustc-serialize",
- "serde",
- "serde_derive",
- "serde_json",
- "ssh2",
- "tokio",
- "zeroize",
-]
-
-[[package]]
 name = "bumpalo"
 version = "3.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -927,6 +900,33 @@ dependencies = [
  "string_cache",
  "string_cache_codegen",
  "tendril",
+]
+
+[[package]]
+name = "mass_block_histories"
+version = "0.1.0"
+dependencies = [
+ "async-recursion",
+ "bigdecimal",
+ "chrono",
+ "diesel",
+ "dotenv",
+ "ethereum-types",
+ "glob",
+ "hyper",
+ "lazy_static",
+ "nipper",
+ "parity-crypto",
+ "parity-secp256k1",
+ "reqwest",
+ "rust-crypto",
+ "rustc-serialize",
+ "serde",
+ "serde_derive",
+ "serde_json",
+ "ssh2",
+ "tokio",
+ "zeroize",
 ]
 
 [[package]]

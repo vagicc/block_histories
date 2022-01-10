@@ -1,0 +1,113 @@
+
+### 查询每台矿机的算力
+POST https://crust.api.subscan.io/api/scan/swork/group/members HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+
+{
+    "row":1000,
+    "page":0,
+    "group_owner":"cTMBkZdpySTU8pUQZdtbKFaghqfMBTxmty3UPui525nUG4Vmi"
+}
+
+返回：
+{
+  "code": 10002,
+  "message": "Invalid Account Address",
+  "generated_at": 1633954220
+}
+
+{
+  "code": 0,
+  "message": "Success",
+  "generated_at": 1633921008,
+  "data": {
+    "count": 46,
+    "list": [
+      {
+        "account_id": "cTLxjaUqqTzDqVF3pvYHwQxxuyjBubqYRUxoMaxGVrrVKRciL", //矿机地址
+        "cap": "335176150962775", //存储容量   304.84TB  比之前少了就报，这个也是算力,接口出来后: *1024KB,* 1024MB  *1024GB *1024TB *1024PB
+        "used": "4419375703",     //已用存储容量   4.115GB
+        "spare": "335171731587072", //可用存储容量  304.836TB
+        "report_slot": 1336800,
+        "reported_files_size": "4419375703"
+      },
+      {
+        "account_id": "cTHY1XzCmFMreid7yzMjtAXyH7RnWWjgCRtXzbipgQwSWNx4a",
+        "cap": "353965406778400",
+        "used": "11783205920",
+        "spare": "353953623572480",
+        "report_slot": 1337400,
+        "reported_files_size": "11783205920"
+      }
+    ]
+  }
+}
+
+### 查询owner组的总算力
+### 区块浏览器：https://crust.subscan.io/  先择“区块链” =>“存储”  再输入“账户Stash”进行搜索
+POST https://crust.api.subscan.io/api/scan/swork/group HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+
+{
+    "group_owner":"cTMBSYn5hGSmqNVuARhqfKDaUYcdguXALfvUGxbRTH8Nciqni"
+}
+
+返回：
+{
+  "code": 0,
+  "message": "Success",
+  "generated_at": 1633920981,
+  "data": {
+    "stash": "cTHta7yewqhXcge6SzQnLn4TwLSHNQqZYEEATWJNNYw3fjRdU",   //账号
+    "controller": "cTMR2Xv26eKHyLp2w7c1h1GSU1dj5Pnq8Rn74SSBa4TbHa5uH", //控制账号
+    "power": "2677120761331712",    // 存储算力（%） 0.1% （ 2677120.7613 ）  
+    "limit_stake": "0",      //质押上限0 CRU
+    "total_stake": "19556201165882",    //Owner 质押 19.5562 CRU
+    "members": 10,    //Members 矿机数量10
+    "cap": "2677120761331712"    //存储容量 2.377PB      4个1024
+  }
+}
+
+### 查询单个矿机的信息 
+POST https://crust.api.subscan.io/api/scan/swork/member
+Accept: application/json
+Content-Type: application/json
+
+{
+    "address":"cTLxjaUqqTzDqVF3pvYHwQxxuyjBubqYRUxoMaxGVrrVKRciL"
+}
+
+返回
+{
+  "code": 0,
+  "message": "Success",
+  "generated_at": 1633920861,
+  "data": {
+    "account_id": "cTLxjaUqqTzDqVF3pvYHwQxxuyjBubqYRUxoMaxGVrrVKRciL",
+    "cap": "335176150962775",   //存储容量
+    "used": "4419375703",       //已用存储量
+    "spare": "335171731587072", //可用存储量*
+    "report_slot": 1336800,
+    "reported_files_size": "4419375703"
+  }
+}
+
+##扫描区块获取收益使用地址：
+###  cTKSEvy1mrWs2dfdv2wTyxaU4NZBirydPj4X6JU2Eu22Gkv9j
+### 交易详情
+POST https://crust.webapi.subscan.io/api/scan/extrinsic
+Content-Type: application/json
+Accept: application/json
+
+{"extrinsic_index":"1393191-1"}    //交易号
+
+
+### 区块详情 (取得交易号后，再去查交易详情)
+POST https://crust.webapi.subscan.io/api/scan/extrinsics
+Content-Type: application/json
+Accept: application/json
+
+{"row":100,"page":0,"block_num":1368010}   //自增1
+//row最大只能传100   .  block_num初始值为895211,不断自增1去查询,page为0时是第一页

@@ -1,0 +1,234 @@
+//矿机的工作量
+// 先登录管理机：  14.29.126.40   root 密码： QWer@1234..
+//  10.10.2.2~33
+//root@lan-17:~# crust tools workload
+{
+    "files": {
+        "lost": {
+            "num": 0,
+            "size": 0
+        },
+        "pending": {
+            "num": 0,
+            "size": 0
+        },
+        "valid": {
+            "num": 0,
+            "size": 0
+        }
+    },
+    "srd": {
+        "srd_complete": 2037, //已封装,    主要关注    要比较，相等或者比以前的多，不然就是异常
+        "srd_remaining_task": 320563, //剩余工作量  主要关注
+        "disk_available_for_srd": 310211, //总工作量
+        "disk_available": 311811,    //硬盘可用
+        "disk_volume": 354752,   //硬盘剩余量  ，跟昨天最后一次对比  ,记录每天最后一次
+        "sys_disk_available": 863,  //硬盘已使用
+        "srd_detail": {    //每个硬盘详情，统计有几个，用来统计。   每次比较不能比上次少。一般来说是相同的数量。不然就是异常
+            "/opt/crust/disks/1": {
+                "srd": 65,
+                "srd_avail": 9671,
+                "avail": 9721,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/2": {
+                "srd": 65,
+                "srd_avail": 9671,
+                "avail": 9721,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/3": {
+                "srd": 65,
+                "srd_avail": 9692,
+                "avail": 9742,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/4": {
+                "srd": 64,
+                "srd_avail": 9776,
+                "avail": 9826,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/5": {
+                "srd": 64,
+                "srd_avail": 9692,
+                "avail": 9742,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/6": {
+                "srd": 64,
+                "srd_avail": 9692,
+                "avail": 9742,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/7": {
+                "srd": 64,
+                "srd_avail": 9776,
+                "avail": 9826,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/8": {
+                "srd": 64,
+                "srd_avail": 9682,
+                "avail": 9732,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/9": {
+                "srd": 64,
+                "srd_avail": 9688,
+                "avail": 9738,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/10": {
+                "srd": 64,
+                "srd_avail": 9682,
+                "avail": 9732,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/11": {
+                "srd": 64,
+                "srd_avail": 9683,
+                "avail": 9733,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/12": {
+                "srd": 64,
+                "srd_avail": 9683,
+                "avail": 9733,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/13": {
+                "srd": 64,
+                "srd_avail": 9683,
+                "avail": 9733,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/14": {
+                "srd": 64,
+                "srd_avail": 9683,
+                "avail": 9733,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/15": {
+                "srd": 64,
+                "srd_avail": 9688,
+                "avail": 9738,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/16": {
+                "srd": 64,
+                "srd_avail": 9688,
+                "avail": 9738,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/17": {
+                "srd": 64,
+                "srd_avail": 9688,
+                "avail": 9738,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/18": {
+                "srd": 64,
+                "srd_avail": 9688,
+                "avail": 9738,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/19": {
+                "srd": 63,
+                "srd_avail": 9689,
+                "avail": 9739,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/20": {
+                "srd": 63,
+                "srd_avail": 9691,
+                "avail": 9741,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/21": {
+                "srd": 63,
+                "srd_avail": 9684,
+                "avail": 9734,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/22": {
+                "srd": 63,
+                "srd_avail": 9689,
+                "avail": 9739,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/23": {
+                "srd": 63,
+                "srd_avail": 9732,
+                "avail": 9782,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/24": {
+                "srd": 63,
+                "srd_avail": 9684,
+                "avail": 9734,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/25": {
+                "srd": 63,
+                "srd_avail": 9691,
+                "avail": 9741,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/26": {
+                "srd": 63,
+                "srd_avail": 9691,
+                "avail": 9741,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/27": {
+                "srd": 63,
+                "srd_avail": 9691,
+                "avail": 9741,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/28": {
+                "srd": 63,
+                "srd_avail": 9693,
+                "avail": 9743,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/29": {
+                "srd": 63,
+                "srd_avail": 9695,
+                "avail": 9745,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/30": {
+                "srd": 63,
+                "srd_avail": 9692,
+                "avail": 9742,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/31": {
+                "srd": 63,
+                "srd_avail": 9691,
+                "avail": 9741,
+                "volumn": 11086
+            },
+            "/opt/crust/disks/32": {
+                "srd": 63,
+                "srd_avail": 9692,
+                "avail": 9742,
+                "volumn": 11086
+            }
+        }
+    }
+}
+
+//root@lan-17:~# crust status
+-----------------------------------------
+Service                    Status
+-----------------------------------------
+chain                      running
+api                        running
+sworker                    running
+smanager                   running
+ipfs                       running
+-----------------------------------------
+root@lan-17:~#

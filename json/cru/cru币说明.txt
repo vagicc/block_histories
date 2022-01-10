@@ -1,0 +1,36 @@
+
+cru区块浏览器:https://subscan.crust.network/    https://crust.subscan.io/block/1295052
+区块浏览器：https://crust.subscan.io/
+https://apps.crust.network/#/explorer
+
+角色： 验证人、候选人、担保人、用户
+
+有两个账户：         控制账户Controller、           账户Stash  (所有领取的币都是归集到此账号)
+                  现在搜块提示用的是这个
+
+
+成都CRU矿池:
+成都控制账户：cTMmTmyneB9HVviSHKF31q2z1hm18wpnqtmrUdQx7nPrq9hcZ
+成都账户：cTMBSYn5hGSmqNVuARhqfKDaUYcdguXALfvUGxbRTH8Nciqni
+成都账户密文：d629ed043fcf74fed7f24483dfbf831fa9baf2d480216d77579cf548d8744907
+1379179-18  58   Balance 19.155323902786 
+
+1393191-1   12
+
+九维控制账户：cTN62nSD9zVan52oLGSAgbtRXoeXviUXooiETbYiauGEfnX5d
+九维账户：cTMBkZdpySTU8pUQZdtbKFaghqfMBTxmty3UPui525nUG4Vmi
+九维账户密文：d66691abcba972686d223bcfb69e151649334721a50816c39b909c3864420417
+1368010-19   53
+
+惠州控制账号：cTMR2Xv26eKHyLp2w7c1h1GSU1dj5Pnq8Rn74SSBa4TbHa5uH
+惠州账号：cTHta7yewqhXcge6SzQnLn4TwLSHNQqZYEEATWJNNYw3fjRdU
+惠州账号密文：44978b6b20e6993a787481a7a3a69e7ff0f3de6b10bee738b9a8b090d7aef130
+交易号:1316905-1   151
+      1284785-12     108
+
+事件： 1393191-12
+
+/home/luck/.cargo/registry/src/github.com-1ecc6299db9ec823/parity-db-0.2.2/Cargo.toml
+
+
+cru分币，得到分币后，要28天后才可以提币
