@@ -3,7 +3,7 @@
 运行命令为：cargo run 币种
 如mass:  cargo run mass
 
-
+项目代码已不再维护，封存××××××
 ---------------------------------------------------------------------------------------------
  
  精通比特币：https://wizardforcel.gitbooks.io/masterbitcoin2cn/content/
@@ -17,6 +17,7 @@
 diesel数据库迁移使用说明
 diesel是Rust的ORM(对象关系映射器)和查询构建器
 diesel为PostgreSQL、Mysql及SQLite提供了开箱即用的支持
+英文在线文档：https://lib.rs/crates/diesel_cli
 diesel-cli命令行工具（创建、迁移）：
 
 安装diesel-cli工具(postgres)：cargo install diesel_cli --no-default-features --features postgres
@@ -69,7 +70,8 @@ elapse@elapse-PC:/luck/Language/Rust/warp-wiki$
           diesel migration run
 重做（等同于上面两条）：diesel migration redo
 上面命令，只能运行、还原或重做一次迁移
-重做所有迁移：diesel migration redo all
+重做所有的迁移：diesel database reset 
+diesel database reset 这条命令执行后会删除数据库，然后按照迁移文件创建数据库和表等。
 -------------------------------------------------------------------------------
 
 ===============================================================================
